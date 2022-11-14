@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.dmssubmissionstub.config
+package controllers
+
+import play.api.mvc.{Action, AnyContent, ControllerComponents}
+import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.{Inject, Singleton}
-import play.api.Configuration
 
-@Singleton
-class AppConfig @Inject()(config: Configuration) {
+@Singleton()
+class CallbackController @Inject()(cc: ControllerComponents)
+    extends BackendController(cc) {
 
-  val appName: String = config.get[String]("appName")
+  def post(): Action[AnyContent] = Action {
+    Ok
+  }
 }

@@ -14,23 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.dmssubmissionstub.controllers
+package controllers
 
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.wordspec.AnyWordSpec
-import play.api.http.Status
+import org.scalatest.OptionValues
+import org.scalatest.freespec.AnyFreeSpec
+import org.scalatest.matchers.must.Matchers
+import play.api.Application
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.libs.json.Json
+import play.api.test.FakeRequest
 import play.api.test.Helpers._
-import play.api.test.{FakeRequest, Helpers}
 
-class MicroserviceHelloWorldControllerSpec extends AnyWordSpec with Matchers {
+class CallbackControllerSpec extends AnyFreeSpec with Matchers with OptionValues {
 
-  private val fakeRequest = FakeRequest("GET", "/")
-  private val controller = new MicroserviceHelloWorldController(Helpers.stubControllerComponents())
+  private val app: Application = GuiceApplicationBuilder().build()
 
-  "GET /" should {
-    "return 200" in {
-      val result = controller.hello()(fakeRequest)
-      status(result) shouldBe Status.OK
+  "POST /callback" - {
+
+    "must return OK" in {
+
+      val result = route(app, FakeRequest(routes.CallbackController.post()).withJsonBody(Json.obj())).value
+      status(result) mustEqual OK
     }
   }
 }
