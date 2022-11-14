@@ -1,3 +1,3 @@
 # microservice specific routes
 
-GET        /hello-world             uk.gov.hmrc.dmssubmissionstub.controllers.MicroserviceHelloWorldController.hello
+POST        /callback             controllers.CallbackController.post()
