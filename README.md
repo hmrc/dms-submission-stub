@@ -1,7 +1,7 @@
 
 # dms-submission-stub
 
-This is a placeholder README.md for a new repository
+This service is used to provide a simple callback endpoint for running tests against dms-submission
 
 ### License
 
